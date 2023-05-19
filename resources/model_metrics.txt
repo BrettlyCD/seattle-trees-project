@@ -1,0 +1,28 @@
+Final Model: RandomForestClassifer
+
+Target Feature: condition_index (created from original 'condition' field)
+
+Predictor Features: common_name, diameter_brest_height_cm, native, age_at_obs, condition_index, adj_reports, norm_prcp_mm_total, norm_snow_mm_total, distance_between, temp_avg_normal, prcp_mm_normal
+
+Parameters:
+  - n_estimators: 1,000
+  - max_depth: 40
+  - min_samples_split: 2
+  - min_samples_leaf: 1
+  - max_features: 'sqrt'
+  
+Macro Avg Performances:
+  Training -  Accuracy:   0.99
+              Precision:  0.99
+              Recall:     0.99
+              F1:         0.99
+  
+  Testing -   Accuracy:   0.59
+              Precision:  0.42
+              Recall:     0.44
+              F1:         0.42
+              
+  Full Data - Accuracy:   0.65
+              Precision:  0.48
+              Recall:     0.50
+              F1:         0.49
