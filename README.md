@@ -1,2 +1,2 @@
-# seattle-trees-project
-Graphical exploration and data modeling of trees and their characteristics in Seattle, Washington.
+# City Trees: Seattle
+## Predicting the Health of Seattle's Urban Tree Cover
