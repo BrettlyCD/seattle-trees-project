@@ -1,8 +1,8 @@
-![Photo of downtown Seattle framed by trees with Mt. Hood in the background.](./resources/readme_photos/seattle-cover.png)
-
 # City Trees: Seattle
 ## Predicting the Health of Seattle's Urban Tree Cover
-
+![Photo of downtown Seattle framed by trees with Mt. Hood in the background.](./resources/readme_photos/seattle-cover.png)
+\
+\
 Trees play important roles in urban areas by improving air quality, regulating temperature, limiting stormwater damage, reducing noise pollution, and promoting biodiversity. They can also add beauty and provide space for community gatherings in areas often surrounded by seas of concrete.
 \
 \
