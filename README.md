@@ -58,10 +58,95 @@ The categorical encoding became my biggest challenge to transform only my two ca
 project but will need some tweaking before scaling more.
 
 ### Balancing Data
-
+First tests of models on my training data gave a decent accuracy, but due to having imbalanced classes they were completely ignoring the small classes.
+\
+\
+![Showing balance of classes skewing heavily to a the 'Good' category.](./resources/readme_photos/class-balance.png)
+\
+\
+To address this imbalance, I used a Synthetic Minority Oversampling Technique (SMOTE) function called SMOTENC which takes in categorical features. This gave me an equal numbers of records in each class for training purposes and I was ready to tune a model.
 
 ### Picking the Right Model
-After doing some practice training with a logistic regression model, I created a loop that tested cookie cutters of a few different classification models to see which had the most promising results.
+After doing some practice training with a logistic regression model, I created a loop that tested cookie cutters of a few different classification models with KFold cross-validation to see which had the most promising results. With this, I decided to invest my time in a Random Forest Classifier model.
+\
+\
+![Results of different model tests showing Random Forest Classifer to be the best option.](./resources/readme_photos/model-types.png)
 
-### Citations
+### Model Tuning
+
+Focused on a random forest model, I first used RandomizedSerachCV to get a better idea of how to tune my hyperparamters. The returned best parameters gave a training accuracy and F1 of 100%, and I found max_depth to be the paramater that had the largest wiggle room.
+\
+\
+![F1 scores of train and test sets using different max_depth values.](./resources/readme_photos/max-depths.png)
+\
+\
+In an effort to generalize better to new data, I trimmed the tree down to a max of 40 depth and ran GridSearchCV. This returned a best model using:
+- n_estimators = 1,000 
+- max_depth = 40 
+- min_samples_split = 2 
+- min_samples_leaf = 1 
+- max_features = 'sqrt'
+\
+\
+As a final check I graphed a learning curve to see if I should use a larger sample.
+\
+\
+![Learning curve showing more data would be beneficial to the model.](./resources/readme_photos/learning-curve.png)
+\
+\
+With more data, my final model returned a test set accuracy of 0.59 and macro F1 of 0.42. It's likely even more data would help. But to not burn out my computer, I stuck with 20,000.
+
+## Modeling
+
+I pulled in a .shp file of the greater Seattle metro area to help with the visualization of my model. And with the model we can start adjusting our features to make predictions for the future.
+
+### Model 1: At-Risk Projection
+
+On the 1-5 scale, the values correspond to: 
+1. Dead/dying
+2. Poor 3. Fair
+4. Good
+5. Excellent
+\
+\
+At this scale, I flagged 1s and 2s as "at risk." I then add 25 years to each tree's age, and leaving all else equal, predicted at-risk trees in 2048.
+\
+\
+![Comparison of actual vs. 25-year prediciton of at-risk trees showing a higher density of at-risk in the future](./resources/readme_photos/at-risk.png)
+\
+\
+You can see the higher density in the colors. Assuming no changes in climate, our at-risk % goes from 7.01% to 13.73%. Of course we know climates are changing, so let's apply that fact to our model.
+
+### Model 2: Model Changing Climate Impacts
+I made the following climate changes (on top of the 25-year fast forward):
+- Average temperature: +5%
+- Total current year rainfall: +5%
+- Total current year snowfall: +2%
+- Average long-term average rainfall: +8%
+\
+\
+![Bar graph showing changes from actual to prediction by % of total for each class.](./resources/readme_photos/prediction_delta.png)
+\
+\
+If these general climate prediction hold true, we could actually see some species of trees thriving more than they are now. Others, however will shift to the at-risk categories. This leads to the question of what types of trees are most at risk. We can answer this question by using the same model, but breaking out the details by type of tree.
+
+### Model 3: What Trees are Most At-Risk
+
+Limiting to only species with >50 occurences, our most at-risk tree is the Cascade Snow Cherry, which is predicted to drop from a 4.0 to a 1.0 (good to dead/dying). But this is just one example, and it got me wondering if whether the tree is native or not will help its chances as the years go by and the climate changes.
+\
+\
+![Bar graph showing the average condition change from actual to predicted by native status.](./resources/readme_photos/native-graph.png)
+![Table with full data behind the above graph.](./resources/readme_photos/native-table.png)
+
+## Future Steps
+
+This project took a few turns from when I first had the idea. It tought me the value of building a more robust problem statement before getting excited about data. But it also gave me a lot of challenges and changes to learn new skills. With some further development it could help local officials intervene on at-risk trees before its too late to keep our urban tree canopies healthy.
+\
+\
+This model would have benefited from more detailed climate data that doesn’t generalize so many trees into one weather station. Whether it be estimates for specific land areas taking into account the surroundings (i.e. roadways hotter than parks). I could also work on more geographic feature engineering that could create more detailed tree clusters (like what type of city features were close by (road, sidewalk, park, cable lines, etc.) or how many trees are clustered in a specific area. Things that were beyond my expertise.
+\
+\
+Once you add those those beneficial features, annual progress and projection updates would be crucial to track the success rate of interventions.
+
+## Citations
 McCoy, Dakota et al. (2022), A dataset of 5 million city trees from 63 US cities: species, location, nativity status, health, and more., Dryad, Dataset, https://doi.org/10.5061/dryad.2jm63xsrf
