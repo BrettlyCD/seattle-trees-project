@@ -25,10 +25,14 @@ I broke this down into a few steps, first calculating the number of reports, app
 ## EDA & Outliers
 Our tree diameter field had me worried about outliers due to it's wide right tail so I took a look at the boxplot of all the trees and then drilled into some details.
 \
-**Boxplot of Diameter - All Trees**
+\
+**Boxplot of Diameters - All Trees**
+\
 ![Boxplot of Diameter - All Trees showing a small IQR and many outliers.](./resources/readme_photos/all-trees-box.png)
 \
-**Boxplot of Diameter - Eddie's Dogwood**
+\
+**Boxplot of Diameters - Eddie's Dogwood**
+\
 ![Boxplot of Diameter - Eddie's Dogwood showing a 0 IQR and many outliers.](./resources/readme_photos/eddies-dogwood-box.png)
 \
 \
