@@ -140,13 +140,13 @@ Limiting to only species with >50 occurences, our most at-risk tree is the Casca
 
 ## Future Steps
 
-This project took a few turns from when I first had the idea. It tought me the value of building a more robust problem statement before getting excited about data. But it also gave me a lot of challenges and changes to learn new skills. With some further development it could help local officials intervene on at-risk trees before its too late to keep our urban tree canopies healthy.
+With some further development this model could help local officials intervene on at-risk trees before its too late to keep our urban tree canopies healthy. 
 \
 \
-This model would have benefited from more detailed climate data that doesn’t generalize so many trees into one weather station. Whether it be estimates for specific land areas taking into account the surroundings (i.e. roadways hotter than parks). I could also work on more geographic feature engineering that could create more detailed tree clusters (like what type of city features were close by (road, sidewalk, park, cable lines, etc.) or how many trees are clustered in a specific area. Things that were beyond my expertise.
+It would have benefited from more detailed climate data that doesn’t generalize into only a few weather stations. It could also use more geographic feature engineering like what type of city features were surrounding each tree or how many trees are clustered in a specific area. Things that were beyond my expertise. 
 \
 \
-Once you add those those beneficial features, annual progress and projection updates would be crucial to track the success rate of interventions.
+Once you add those those beneficial features, annual progress and projection updates would be crucial to track the success rate of interventions. 
 
 ## Citations
 McCoy, Dakota et al. (2022), A dataset of 5 million city trees from 63 US cities: species, location, nativity status, health, and more., Dryad, Dataset, https://doi.org/10.5061/dryad.2jm63xsrf
