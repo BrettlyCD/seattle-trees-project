@@ -39,5 +39,29 @@ Our tree diameter field had me worried about outliers due to it's wide right tai
 The aggregate boxplot gave me a more powerful representation of our tailed data. But it was getting into the detail by species that I realized many records had identical diameters. It's possible the large scale of the data required some generalization/binning over precise measurements.
 I like to use a 1.5X IQR definition for flagging outliers, but this binning made many of the IQRs equal to 0. To address this, I used the 1.5X IQR flag if for IQRs > 0 and > 3 standard deviations from the mean for IQRs = 0. I then dropped what this function flagged as an outlier, dropping 4,076 records (~2.5% of records).
 
+### Correlation Matrix
+To close out my EDA, I plotted a correlation matrix. Unfortunately I did not find an exciting correlation. Instead, just the covariance from some of the climate data I pulled into the analysis. I dropped the duplicative values, leaving me with a final tally of 158,004 rows and 11 columns.
+\
+\
+![Corrleation Matrix showing no much correlation, but some covariance that needed to be addressed.](./resources/readme_photos/corr-matrix.png)
+
+## Preprocessing & Training
+Having this many records proved to be slow when fitting models, so I sampled down to 10,000 records to start. After some trial and error I settled to a few consistent pre-processing steps:
+- SimpleImputer using median values for numerical features 
+- SimpleImputer using 'missing' for categoricalfeatures 
+- StandardScaler on my tree age and climate fields (more normally distributed)
+- PowerTransformer on my other numerical fields (more tailed distribution)
+- OneHotEncoder on my categorical values, ignoring unknowns
+\
+\
+The categorical encoding became my biggest challenge to transform only my two categorical features, but still scale to new data. I ended up using a custom process using OneHotEncoder, but saving the results to a new dataframe. It works well for the
+project but will need some tweaking before scaling more.
+
+### Balancing Data
+
+
+### Picking the Right Model
+After doing some practice training with a logistic regression model, I created a loop that tested cookie cutters of a few different classification models to see which had the most promising results.
+
 ### Citations
 McCoy, Dakota et al. (2022), A dataset of 5 million city trees from 63 US cities: species, location, nativity status, health, and more., Dryad, Dataset, https://doi.org/10.5061/dryad.2jm63xsrf
