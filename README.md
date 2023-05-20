@@ -104,7 +104,8 @@ I pulled in a .shp file of the greater Seattle metro area to help with the visua
 
 On the 1-5 scale, the values correspond to: 
 1. Dead/dying
-2. Poor 3. Fair
+2. Poor 
+3. Fair
 4. Good
 5. Excellent
 \
