@@ -126,7 +126,7 @@ I made the following climate changes (on top of the 25-year fast forward):
 - Average long-term average rainfall: +8%
 \
 \
-![Bar graph showing changes from actual to prediction by % of total for each class.](./resources/readme_photos/prediction_delta.png)
+![Bar graph showing changes from actual to prediction by % of total for each class.](./resources/readme_photos/prediction-delta.png)
 \
 \
 If these general climate prediction hold true, we could actually see some species of trees thriving more than they are now. Others, however will shift to the at-risk categories. This leads to the question of what types of trees are most at risk. We can answer this question by using the same model, but breaking out the details by type of tree.
